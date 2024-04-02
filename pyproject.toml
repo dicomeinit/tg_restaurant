@@ -1,0 +1,56 @@
+[tool.poetry]
+name = "simple"
+version = "0.1.0"
+description = "Simple"
+authors = ['author@example.com']
+readme = "README.md"
+packages = []
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+# tools configuration
+## isort config
+[tool.isort]
+profile = "black"
+include_trailing_comma = true
+known_django = "django,rest_framework,drf_spectacular"
+lines_after_imports = 2
+lines_between_types = 1
+line_length = 120
+multi_line_output = 3
+sections = [
+    "FUTURE",
+    "STDLIB",
+    "DJANGO",
+    "THIRDPARTY",
+    "FIRSTPARTY",
+    "LOCALFOLDER",
+]
+skip = [".venv"]
+
+## black config
+[tool.black]
+line-length = 120
+target-version = ['py310']
+include = '\.pyi?$'
+exclude = '''
+
+(
+  (
+    \.venv
+    | \.mypy_cache
+    | \.env
+  )
+)
+'''
+
+## autoflake config
+[tool.autoflake]
+remove-all-unused-imports = true
+recursive = true
+remove-unused-variables = true
+in-place = true
+exclude=["__init__.py"]
